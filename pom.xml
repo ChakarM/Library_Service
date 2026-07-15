@@ -78,6 +78,7 @@
                             <version>1.18.46</version>
                         </path>
                     </annotationProcessorPaths>
+                    <parameters>true</parameters>
                     <source>17</source>
                     <target>17</target>
                 </configuration>
