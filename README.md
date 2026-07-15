@@ -29,6 +29,9 @@
 - **Method:** `GET`
 - **URL:** `http://localhost:8080/SpringRestPrac/library/authors/books?name=J.R.R.&surname=Tolkien`
 
+### 5. Retrieve All Authors
+- **Method:** `GET`
+- **URL:** `http://localhost:8080/SpringRestPrac/library/authors`
 ---
 
 ## 🔧 Global Exception Management
