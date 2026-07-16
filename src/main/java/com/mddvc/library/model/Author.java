@@ -30,7 +30,7 @@ public class Author {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
 
 
@@ -45,6 +45,10 @@ public class Author {
         Book book = new Book(title, price, this);
         books.add(book);
         return book;
+    }
+
+    public void deleteBook(Book book){
+      this.books.remove(book);
     }
 
     public List<Book> getBooks(){

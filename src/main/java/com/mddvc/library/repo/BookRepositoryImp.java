@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,11 @@ public class BookRepositoryImp implements BookRepository {
     @Autowired
     public BookRepositoryImp(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+    }
+
+    @Override
+    public void removeBook(Book book) {
+        sessionFactory.getCurrentSession().remove(book);
     }
 
     @Override

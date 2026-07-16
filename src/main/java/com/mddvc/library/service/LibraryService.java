@@ -15,10 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-@Transactional
 public class LibraryService {
 
     private final AuthorRepository authorRepository;
@@ -35,7 +35,7 @@ public class LibraryService {
         this.bookMapper = bookMapper;
     }
 
-
+    @Transactional
     public BookDto saveBook(BookDto bookDto) {
         String name = bookDto.author().name();
         String surname = bookDto.author().surname();
@@ -84,5 +84,21 @@ public class LibraryService {
                 .stream()
                 .map(bookMapper::bookToDto)
                 .toList();
+    }
+
+    @Transactional
+    public BookDto changeBookPrice(String title, BigDecimal newPrice) {
+        Book book = bookRepositoryImp.findByTitle(title)
+                .orElseThrow(() -> new ServiceException("Book %s not found".formatted(title)));
+        book.changePrice(newPrice);
+        return bookMapper.bookToDto(book);
+    }
+
+    @Transactional
+    public void deleteBook(String title) {
+        Book book = bookRepositoryImp.findByTitle(title)
+                .orElseThrow(() -> new ServiceException("Book %s not found".formatted(title)));
+        Author author = book.getAuthor();
+        author.deleteBook(book);
     }
 }

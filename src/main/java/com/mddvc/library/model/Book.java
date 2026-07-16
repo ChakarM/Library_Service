@@ -29,12 +29,20 @@ public class Book {
 
     public Book(String title, BigDecimal price, Author author) {
         if (title == null || title.isBlank()) throw new IllegalArgumentException("Title can't be empty");
-        if (price.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Price should be more than zero");
+        if (price == null || price.compareTo(BigDecimal.ZERO) <= 0)
+            throw new IllegalArgumentException("Price should be more than zero");
         this.title = title;
         this.price = price;
         this.author = author;
     }
 
+    public void changePrice(BigDecimal newPrice) {
+        if (newPrice == null || newPrice.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Price should be more than zero");
+        } else {
+            this.price = newPrice;
+        }
+    }
 
 
 }
