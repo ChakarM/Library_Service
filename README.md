@@ -32,9 +32,17 @@
 ### 5. Retrieve All Authors
 - **Method:** `GET`
 - **URL:** `http://localhost:8080/SpringRestPrac/library/authors`
+
+### 6. Delete Book by Title
+- **Method:** `DELETE`
+- **URL:** `http://localhost:8080/SpringRestPrac/library/authors/books/{title}`
+
+### 7. Update Book Price 
+- **Method:** `PUT`
+- **URL:** `http://localhost:8080/SpringRestPrac/library/books/{title}?newPrice=25.5`
 ---
 
-## 🔧 Global Exception Management
+## Global Exception Management
 When business invariants or lookup paths fail (e.g., fetching a non-existent title), a custom `ServiceException` is triggered. The request is caught globally out of runtime by an exception interceptor and safely reformatted to protect the servlet engine from crashing:
 
 **Response Status Code:** `404 Not Found`
